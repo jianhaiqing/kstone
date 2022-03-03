@@ -1,0 +1,67 @@
+apiVersion: kstone.tkestack.io/v1alpha1
+kind: EtcdCluster
+metadata:
+  annotations:
+    backup: "\n{\n  \"backupPolicy\": {\n    \"backupIntervalInSecond\": 3600,\n    \"maxBackups\":
+      72,\n    \"timeoutInSecond\": 600\n  },\n  \"s3\": {\n    \"awsSecret\": \"local\",\n
+      \   \"path\": \"kstone\",\n  \"endpoint\": \"172.17.0.10:9000\",\n
+      \  \"forcePathStyle\": true\n },\n  \"storageType\": \"S3\"\n}\n      "
+    certName: kstone/local
+    featureGates: alarm=true,backup=true,backupcheck=true,consistency=true,healthy=true,monitor=true,request=true
+    importedAddr: https://192.168.49.2:2379
+    kubernetes: "true"
+  creationTimestamp: "2022-03-01T00:01:18Z"
+  generation: 4
+  labels:
+    alarm: "true"
+    backup: "true"
+    backupcheck: "true"
+    clusterType: imported
+    consistency: "true"
+    etcdName: local
+    healthy: "true"
+    monitor: "true"
+    request: "true"
+    version: ""
+  name: local
+  namespace: kstone
+  resourceVersion: "3449"
+  uid: 30ccfabb-2377-4754-a151-b0bd7bf5e9ad
+spec:
+  affinity: {}
+  authConfig: {}
+  clusterType: imported
+  description: minikube etcd
+  diskSize: 2
+  diskType: ssd
+  name: local
+  size: 1
+  totalCpu: 1
+  totalMem: 2
+  version: ""
+status:
+  conditions:
+  - endTime: "2022-03-01T00:01:18Z"
+    startTime: "2022-03-01T00:01:18Z"
+    status: "True"
+    type: Create
+  featureGatesStatus:
+    alarm: enabled
+    backup: enabled
+    backupcheck: enabled
+    consistency: enabled
+    healthy: enabled
+    monitor: enabled
+    request: enabled
+  members:
+  - clientUrl: https://192.168.49.2:2379
+    endpoint: 192.168.49.2
+    extensionClientUrl: https://192.168.49.2:2379
+    memberId: "12593026477526642892"
+    name: minikube
+    port: "2379"
+    role: Leader
+    status: Running
+    version: 3.4.13
+  phase: Running
+  serviceName: https://192.168.49.2:2379

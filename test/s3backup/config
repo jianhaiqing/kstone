@@ -1,0 +1,5 @@
+[default]
+region=us-west-1
+endpoint=172.18.70.60:32276
+output=json
+disableSSL=true
