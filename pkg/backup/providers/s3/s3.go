@@ -31,7 +31,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/klog/v2"
 
-	"tkestack.io/kstone/pkg/apis/kstone/v1alpha2"
+	v1alpha2 "tkestack.io/kstone/pkg/apis/kstone/v1alpha1"
 	"tkestack.io/kstone/pkg/backup"
 	featureutil "tkestack.io/kstone/pkg/featureprovider/util"
 )

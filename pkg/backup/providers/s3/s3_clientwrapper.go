@@ -3,13 +3,14 @@ package s3
 import (
 	"context"
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws/session"
-	awsS3 "github.com/aws/aws-sdk-go/service/s3"
 	"io/ioutil"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/client-go/kubernetes"
 	"os"
 	"path"
+
+	"github.com/aws/aws-sdk-go/aws/session"
+	awsS3 "github.com/aws/aws-sdk-go/service/s3"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/kubernetes"
 )
 
 const (
@@ -35,6 +36,8 @@ func NewClientFromSecret(kubecli kubernetes.Interface, namespace, endpoint, awsS
 		return nil, fmt.Errorf("failed to create aws config dir: (%v)", err)
 	}
 	so, err := setupAWSConfig(kubecli, namespace, awsSecret, endpoint, w.configDir, forcePathStyle)
+	disabledSSL := true
+	so.Config.DisableSSL = &disabledSSL
 	if err != nil {
 		return nil, fmt.Errorf("failed to setup aws config: (%v)", err)
 	}
@@ -43,6 +46,7 @@ func NewClientFromSecret(kubecli kubernetes.Interface, namespace, endpoint, awsS
 		return nil, fmt.Errorf("new AWS session failed: %v", err)
 	}
 	w.S3 = awsS3.New(sess)
+
 	return w, nil
 }
 
